@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000"> <!-- Adjust theme color for mobile -->
+  <meta name="description" content="A 3D web app using Three.js">
+  <title>Three.js Web App</title>
+
+  <!-- Link to the PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Icons for PWA (optional, if you don't have them, you can skip this part) -->
+  <link rel="icon" href="/img2.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+  <!-- Styles -->
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <!-- Main content -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
+
+  <!-- Service Worker Registration Script -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
